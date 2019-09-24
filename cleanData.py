@@ -1,4 +1,5 @@
 #Cleaning the match table
+
 #Drop the rows that have no player information
 toDrop = []
 for i in range(1, 11):
@@ -32,9 +33,12 @@ for i in betLoss:
     
 tempMatch = tempMatch.dropna(axis=0, how='all', thresh=None, subset=toDrop, inplace=False)
 
+toDrop = ['goal', 'shoton', 'shotoff', 'foulcommit', 'card', 'cross', 'corner', 'possession']
+tempMatch = tempMatch.drop(columns=toDrop)
+
 #Fill the Null values of bet scores
 newMatches = pd.DataFrame()
-for row in tqdm(tempMatch.iterrows()):
+for row in tempMatch.iterrows():
     
     #Get the columns into Pandas dataframes
     valuesBetWins = row[1][betWins]
@@ -48,19 +52,19 @@ for row in tqdm(tempMatch.iterrows()):
 
     #Replace the Null values
     for i in betWins:
-        if row[1][i] == 'nan':
+        if str(row[1][i]) == 'nan':
             row[1][i] = avgBetWins
             
     for i in betDraws:
-        if row[1][i] == 'nan':
+        if str(row[1][i]) == 'nan':
             row[1][i] = avgBetDraws
         
     for i in betLoss:
-        if row[1][i] == 'nan':
+        if str(row[1][i]) == 'nan':
             row[1][i] = avgBetLoss
 
     newMatches = newMatches.append(row[1])
-
+    
 #Cleaning the Player  Attributes table
 #Drop some columns from the player attributes table 
 toDrop = ['overall_rating', 'attacking_work_rate', 'volleys']
