@@ -1,2 +1,2 @@
 # Football-Prediction-Model
-Model for predicting football matches results in Italien Serie
+Classification Model for predicting football matches outcomes in Italian Serie
