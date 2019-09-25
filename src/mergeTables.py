@@ -1,4 +1,4 @@
-Match_Train=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
+dataTrain=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
                         "home_player_X1,"
                         "home_player_X2,"
                         "home_player_X3,"
@@ -96,7 +96,7 @@ Match_Train=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,
                        "GBA,"
                        "BSA"
                                               " FROM Match JOIN League ON Match.league_id=League.id JOIN Country ON League.country_id=Country.id WHERE Country.name='Italy' AND season!='2015/2016';",conn)
-Match_Test=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
+dataTest=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
                         "home_player_X1,"
                         "home_player_X2,"
                         "home_player_X3,"
@@ -173,7 +173,7 @@ Match_Test=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,a
                        "VCH,"
                        "GBH,"
                        "BSH,"
-                                              "B365D,"
+                       "B365D,"
                        "BWD,"
                        "IWD,"
                        "LBD,"
@@ -183,7 +183,7 @@ Match_Test=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,a
                        "VCD,"
                        "GBD,"
                        "BSD,"
-                        "B365A,"
+                       "B365A,"
                        "BWA,"
                        "IWA,"
                        "LBA,"
@@ -207,10 +207,8 @@ Match_Train_Attributes.drop(columns=['Team_Attributes_id_y','Team_Attributes_tea
 
 Match_Player_Attributes=pd.read_sql("SELECT * FROM Match_Player_Attributes",conn)
 
-Match_Train=pd.merge(Match_Train_Attributes,Match_Player_Attributes,left_on='MatchId',right_on='match_id')
-Match_Train.drop(columns='match_id')
-
-print(list(Match_Train.columns))
+dataTrain=pd.merge(Match_Train_Attributes,Match_Player_Attributes,left_on='MatchId',right_on='match_id')
+dataTrain.drop(columns='match_id')
 
 Team_Attributes=pd.read_sql("SELECT id as Team_Attributes_id,team_fifa_api_id as Team_Attributes_team_fifa_api_id,team_api_id as Team_Attributes_team_api_id,date as Team_Attributes_date,buildUpPlaySpeed,buildUpPlaySpeedClass,buildUpPlayDribbling,buildUpPlayDribblingClass,buildUpPlayPassing,buildUpPlayPassingClass,buildUpPlayPositioningClass,chanceCreationPassing,chanceCreationPassingClass,chanceCreationCrossing,chanceCreationCrossingClass,chanceCreationShooting,chanceCreationShootingClass,chanceCreationPositioningClass,defencePressure,defencePressureClass,defenceAggression,defenceAggressionClass,defenceTeamWidth,defenceTeamWidthClass,defenceDefenderLineClass,season as Team_Attributes_season FROM Team_Attributes WHERE Team_Attributes_season is not null",conn)
 Team_Attributes=Team_Attributes.drop_duplicates(subset={'Team_Attributes_team_api_id','Team_Attributes_season'})
@@ -222,6 +220,6 @@ Match_Test_Attributes.drop(columns=['Team_Attributes_id_y','Team_Attributes_team
 
 Match_Player_Attributes=pd.read_sql("SELECT * FROM Match_Player_Attributes",conn)
 
-Match_Test=pd.merge(Match_Test_Attributes,Match_Player_Attributes,left_on='MatchId',right_on='match_id')
-Match_Test.drop(columns='match_id')
+dataTest=pd.merge(Match_Test_Attributes,Match_Player_Attributes,left_on='MatchId',right_on='match_id')
+dataTest.drop(columns='match_id')
 
