@@ -1,4 +1,4 @@
-dataTrain=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
+Match_Train=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
                         "home_player_X1,"
                         "home_player_X2,"
                         "home_player_X3,"
@@ -96,7 +96,7 @@ dataTrain=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,aw
                        "GBA,"
                        "BSA"
                                               " FROM Match JOIN League ON Match.league_id=League.id JOIN Country ON League.country_id=Country.id WHERE Country.name='Italy' AND season!='2015/2016';",conn)
-dataTest=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
+Match_Test=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
                         "home_player_X1,"
                         "home_player_X2,"
                         "home_player_X3,"
