@@ -2,6 +2,7 @@ import sqlite3
 import pandas as pd
 
 conn = sqlite3.connect('Data/database.sqlite')
+match = pd.read_sql("SELECT * FROM MATCH;", conn)
 matchTrain = pd.read_sql("SELECT * FROM Match WHERE season!='2015/2016';", conn)
 matchTest = pd.read_sql("SELECT * FROM Match WHERE season='2015/2016';", conn)
 country = pd.read_sql("SELECT * FROM Country;", conn)
