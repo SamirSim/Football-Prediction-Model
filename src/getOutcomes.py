@@ -1,4 +1,4 @@
-## Loading all functions
+# Loading all functions
 def get_match_label(match):
     ''' Derives a label for a given match. '''
 
