@@ -1,5 +1,3 @@
-conn=sqlite3.connect(r'C:\Users\ThisPC\Desktop\ML\database.sqlite')
-
 Match_Train=pd.read_sql("SELECT Match.id as MatchId,season,stage,home_team_goal,away_team_goal,home_team_api_id,away_team_api_id,"
                         "home_player_X1,"
                         "home_player_X2,"
