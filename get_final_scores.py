@@ -1,19 +1,3 @@
-import sqlite3
-import pandas as pd
-import numpy as np
-import pandas as pd
-import os
-
-
-#importing the data
-path = "/Users/davidemomi/Desktop/DAVE/summerscholl_viterbo/summerschool/project/"  #Insert path here
-database = path + 'database.sqlite'
-conn = sqlite3.connect(database)
-
-#Fetching required data tables
-matches = pd.read_sql("SELECT * FROM Match;", conn)
-
-
 ## Loading all functions
 def get_match_label(match):
     ''' Derives a label for a given match. '''
