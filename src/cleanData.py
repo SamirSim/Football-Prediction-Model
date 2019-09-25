@@ -1,5 +1,5 @@
 
-#Cleaning the match table
+#Cleaning the matches table
 
 #Drop the rows that have no player information
 toDrop = []
