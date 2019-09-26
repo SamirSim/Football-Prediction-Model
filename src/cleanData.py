@@ -3,7 +3,7 @@
 
 #Drop the rows that have no player information
 toDrop = []
-for i in range(1, 11):
+for i in range(1, 12):
     toDrop.append('home_player_'+str(i))
     toDrop.append('away_player_'+str(i))
     toDrop.append('home_player_X'+str(i))
